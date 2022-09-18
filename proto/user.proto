@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+
+package userPackage;
+
+
+service UserService {
+    rpc list (Empy) returns (UserListResponse){}
+    rpc getUser (UserId) returns (User) {}
+    rpc deleteUser (UserId) returns (Empy) {}
+
+    rpc nums (NumsParams) returns ( stream Nums){}
+}
+
+message Nums {
+    int32 number = 1;
+}
+
+message NumsParams {
+    int32 maxNumber = 1;
+    int32 timeOut = 2;
+}
+
+
+
+
+message Empy {}
+
+message UserId {
+    int32 id = 1;
+}
+message User {
+    int32 id = 1;
+    string name = 2;
+}
+message UserListResponse {
+    repeated User users = 1;
+}
